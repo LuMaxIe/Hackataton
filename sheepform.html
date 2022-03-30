@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Hackaton Assignment</title>
+  <link rel="stylesheet" href="mobilefirst.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+
+  <!-- Menu which folds on smaller screens -->
+  <nav class="navigation" id="main-navigation">
+    <a id="home-button" href="./home.html" class="active">Home</a>
+    <a href="./sheepygrid.html">Sheepy Grid</a>
+    <a href="./flexysheep.html">Flexy Sheep</a>
+    <a href="./sheepform.html">Sheep Generator</a>
+    <a href="./sheepmedia.html">Sheep Media</a>
+    <a href="javascript:void(0)" class="icon" onclick="menuHandler()">
+      <i class="fa fa-bars"></i>
+    </a>
+    <script>
+      function menuHandler() {
+        let menu = document.getElementById("main-navigation")
+        if (menu.className === "navigation") {
+          menu.className += " responsive"
+        } else {
+          menu.className = "navigation"
+        }
+      }
+    </script>
+  </nav>
+
+  <h1 id="form-header">Generate your own sheep here!</h1>
+
+  <div id="form-container">
+    <form id="sheep-form">
+      <label>Sheep name</label>
+      <input type="text" id="sheep-name-input">
+      <label>Loud sheep?</label>
+      <input type="checkbox" id="sheep-loudness-input">
+      <label>Ready to generate?</label>
+      <input type="button" onclick="sheepGenerator()" value="Generate!">
+    </form>
+    <div id="sheep-display">
+      <p id="sheep-name"></p>
+      <img id="sheep-image">
+      <p id="sheep-loudness"></p>
+    </div>
+    <script>
+      function sheepGenerator() {
+        const sheepImages = [
+          "https://cdn-icons-png.flaticon.com/512/66/66682.png",
+          "https://cdn-icons-png.flaticon.com/512/66/66359.png",
+          "https://cdn-icons-png.flaticon.com/512/194/194070.png",
+          "https://cdn-icons-png.flaticon.com/512/66/66458.png",
+          "https://cdn.iconscout.com/icon/free/png-256/sheep-2283629-1904217.png",
+          "https://findicons.com/files/icons/2711/free_icons_for_windows8_metro/512/sheep.png",
+          "https://icon-library.com/images/sheep-icon/sheep-icon-22.jpg",
+          "https://icon-library.com/images/sheep-icon-png/sheep-icon-png-20.jpg",
+          "https://www.pngrepo.com/png/194443/512/sheep.png"
+        ];
+        const name = `Sheep name: ${document.getElementById("sheep-name-input").value}`;
+        const loudness = document.getElementById("sheep-loudness-input").checked;
+        const randNum = Math.floor(Math.random() * 4);
+
+        document.getElementById("sheep-name").innerHTML = name;
+        document.getElementById("sheep-loudness").innerHTML = loudness ===
+          true ? "Says: BAAAAAA!!" : "Says: baa!";
+        document.getElementById("sheep-image").setAttribute("src", sheepImages[randNum]);
+      }
+    </script>
+  </div>
+
+</body>
+
+</html>
